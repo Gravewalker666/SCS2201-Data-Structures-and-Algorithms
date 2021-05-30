@@ -10,3 +10,4 @@ UCSC 2nd year 1st semester data structures and algorithms
 | Rabin-Karp | *O(m)* | *O((n - m + 1)m)* |
 | Finite Automation | *O(m* &#124;∑&#124;*)* | *O(n)* |
 | Knuth-Morris-Pratt | *O(m)* | *O(n)* |
+**n** - Length of the Text, **m**(< n) - Length of the Pattern
