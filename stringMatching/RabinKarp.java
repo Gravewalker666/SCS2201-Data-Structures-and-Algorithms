@@ -1,7 +1,7 @@
 public class RabinKarp {
     public final static int d = 10;
 
-    public static void search (String pattern, String text) {
+    public static void search (String pattern, String text, int q) {
         int m = pattern.length();
         int n = text.length();
         int i, j;
@@ -12,6 +12,8 @@ public class RabinKarp {
             p += pattern.charAt(i)*Math.pow(d, m - (i + 1));
             t += text.charAt(i)*Math.pow(d, m - (i + 1));
         }
+        p = p%q;
+        t = t%q;
         System.out.println(p);
         System.out.println(t);
         for (i = 0; i < n - m + 1; i++) {
@@ -24,8 +26,12 @@ public class RabinKarp {
                     System.out.println("Pattern found at index: " +  (i + 1));
             }
             if (i < n - m) {
-                t = (int) (t - text.charAt(i)*Math.pow(d, m - 1));
-                t = t*d + text.charAt(i + m);
+                t = (int) (t - text.charAt(i)*Math.pow(d, m - 1)%q);
+                t = t*d%q + text.charAt(i + m)%q;
+                if (t < 0) {
+                    t += q;
+                }
+                t = t%q;
             }
             System.out.println("--");
             System.out.println(p);
@@ -38,6 +44,6 @@ public class RabinKarp {
         String pattern = "cat";
         System.out.println("Text: " + text);
         System.out.println("Pattern: " + pattern);
-        search(pattern, text);
+        search(pattern, text, 13);
     }
 }
